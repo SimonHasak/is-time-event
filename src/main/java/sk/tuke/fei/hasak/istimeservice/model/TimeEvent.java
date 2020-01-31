@@ -18,14 +18,14 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Data
-@Table(name = "event")
+@Table(name = "is_time_tb")
 public class TimeEvent extends RepresentationModel<TimeEvent> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "event_time", nullable = false)
+    @Column(name = "time", nullable = false)
     private LocalDateTime eventTime;
 
 }
