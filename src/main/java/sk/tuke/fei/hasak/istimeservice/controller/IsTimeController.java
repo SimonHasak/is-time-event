@@ -25,7 +25,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
  * @author Šimon Hašák
  */
 @RestController
-@RequestMapping("/is-time-event")
+@RequestMapping("/is-time")
 public class IsTimeController {
 
     private final IsTimeService timeService;
