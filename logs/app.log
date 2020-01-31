@@ -1,0 +1,37 @@
+2020-01-31 18:54:22.872 [main] INFO  sk.tuke.fei.hasak.istimeservice.IsTimeServiceApplication - Starting IsTimeServiceApplication on simon with PID 11953 (/home/simon/School/bakalarka/microservices/is-time-service/target/classes started by simon in /home/simon/School/bakalarka/microservices/is-time-service)
+2020-01-31 18:54:22.895 [main] DEBUG sk.tuke.fei.hasak.istimeservice.IsTimeServiceApplication - Running with Spring Boot v2.2.2.RELEASE, Spring v5.2.2.RELEASE
+2020-01-31 18:54:22.897 [main] INFO  sk.tuke.fei.hasak.istimeservice.IsTimeServiceApplication - No active profile set, falling back to default profiles: default
+2020-01-31 18:54:24.010 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-01-31 18:54:24.011 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-01-31 18:54:24.011 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-01-31 18:54:24.065 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-01-31 18:54:24.183 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-01-31 18:54:24.221 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.9.Final}
+2020-01-31 18:54:24.282 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-01-31 18:54:24.332 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-01-31 18:54:24.377 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-01-31 18:54:24.387 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-01-31 18:54:24.767 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-01-31 18:54:24.967 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-01-31 18:54:25.607 [scheduling-1] INFO  sk.tuke.fei.hasak.istimeservice.scheduling.ScheduledTask - Vypis
+2020-01-31 18:54:25.609 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-01-31 18:54:25.623 [main] INFO  sk.tuke.fei.hasak.istimeservice.IsTimeServiceApplication - Started IsTimeServiceApplication in 3.153 seconds (JVM running for 4.169)
+2020-01-31 18:54:30.608 [scheduling-1] INFO  sk.tuke.fei.hasak.istimeservice.scheduling.ScheduledTask - Vypis
+2020-01-31 18:54:35.608 [scheduling-1] INFO  sk.tuke.fei.hasak.istimeservice.scheduling.ScheduledTask - Vypis
+2020-01-31 18:54:40.608 [scheduling-1] INFO  sk.tuke.fei.hasak.istimeservice.scheduling.ScheduledTask - Vypis
+2020-01-31 18:54:45.608 [scheduling-1] INFO  sk.tuke.fei.hasak.istimeservice.scheduling.ScheduledTask - Vypis
+2020-01-31 18:54:46.908 [http-nio-8080-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-01-31 18:54:50.608 [scheduling-1] INFO  sk.tuke.fei.hasak.istimeservice.scheduling.ScheduledTask - Vypis
+2020-01-31 18:54:55.607 [scheduling-1] INFO  sk.tuke.fei.hasak.istimeservice.scheduling.ScheduledTask - Vypis
+2020-01-31 18:55:00.607 [scheduling-1] INFO  sk.tuke.fei.hasak.istimeservice.scheduling.ScheduledTask - Vypis
+2020-01-31 18:55:05.607 [scheduling-1] INFO  sk.tuke.fei.hasak.istimeservice.scheduling.ScheduledTask - Vypis
+2020-01-31 18:55:10.607 [scheduling-1] INFO  sk.tuke.fei.hasak.istimeservice.scheduling.ScheduledTask - Vypis
+2020-01-31 18:55:15.607 [scheduling-1] INFO  sk.tuke.fei.hasak.istimeservice.scheduling.ScheduledTask - Vypis
+2020-01-31 18:55:20.607 [scheduling-1] INFO  sk.tuke.fei.hasak.istimeservice.scheduling.ScheduledTask - Vypis
+2020-01-31 18:55:25.607 [scheduling-1] INFO  sk.tuke.fei.hasak.istimeservice.scheduling.ScheduledTask - Vypis
+2020-01-31 18:55:30.607 [scheduling-1] INFO  sk.tuke.fei.hasak.istimeservice.scheduling.ScheduledTask - Vypis
+2020-01-31 18:55:35.607 [scheduling-1] INFO  sk.tuke.fei.hasak.istimeservice.scheduling.ScheduledTask - Vypis
+2020-01-31 18:55:40.608 [scheduling-1] INFO  sk.tuke.fei.hasak.istimeservice.scheduling.ScheduledTask - Vypis
+2020-01-31 18:55:45.607 [scheduling-1] INFO  sk.tuke.fei.hasak.istimeservice.scheduling.ScheduledTask - Vypis
+2020-01-31 18:55:50.135 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-01-31 18:55:50.149 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
