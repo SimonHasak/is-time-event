@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 public class ScheduledTask {
 
     @Scheduled(fixedRate = 5000)
-    public void chechTime() {
-        log.info("Vypis");
+    public void checkTime() {
+        log.info("vypis");
     }
 
 }
