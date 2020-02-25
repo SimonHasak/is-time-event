@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Configuration status="WARN" monitorInterval="30" shutdownHook="disable">
+<Configuration status="WARN" monitorInterval="60" packages="biz.paluch.logging.gelf.log4j2">
 
     <Properties>
         <Property name="baseDir">logs</Property>
@@ -15,25 +15,11 @@
             <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </File>
 
-        <!--<Gelf name="GELF"-->
-        <!--host="tcp:localhost"-->
-        <!--port="12201"-->
-        <!--version="1.1"-->
-        <!--extractStackTrace="true"-->
-        <!--filterStackTrace="true"-->
-        <!--mdcProfiling="true"-->
-        <!--includeFullMdc="true"-->
-        <!--maximumMessageSize="8192"-->
-        <!--originHost="%host"-->
-        <!--ignoreExceptions="true">-->
-        <!--<Field name="timestamp" pattern="%d{dd MMM yyyy HH:mm:ss,SSS}" />-->
-        <!--<Field name="level" pattern="%level" />-->
-        <!--<Field name="simpleClassName" pattern="%C{1}" />-->
-        <!--<Field name="className" pattern="%C" />-->
-        <!--<Field name="server" pattern="%host" />-->
-        <!--<Field name="server.fqdn" pattern="%host{fqdn}" />-->
-        <!--<Field name="application" literal="${applicationName}" />-->
-        <!--</Gelf>-->
+        <Gelf name="GELF" host="udp:localhost" port="12201" version="1.1" extractStackTrace="true"
+              filterStackTrace="true" maximumMessageSize="8192"
+              originHost="%host{fqdn}">
+            <Field name="className" pattern="%C"/>
+        </Gelf>
 
     </Appenders>
 
@@ -41,16 +27,18 @@
         <Root level="INFO">
             <AppenderRef ref="STDOUT"/>
             <AppenderRef ref="FILE"/>
-            <!--<AppenderRef ref="GELF"/>-->
+            <AppenderRef ref="GELF"/>
         </Root>
 
         <Logger name="sk.tuke.fei.hasak" level="DEBUG" additivity="false">
             <AppenderRef ref="STDOUT"/>
             <AppenderRef ref="FILE"/>
+            <AppenderRef ref="GELF"/>
         </Logger>
         <Logger name="org.springframework" level="WARN" additivity="false">
             <AppenderRef ref="STDOUT"/>
             <AppenderRef ref="FILE"/>
+            <AppenderRef ref="GELF"/>
         </Logger>
 
     </Loggers>
