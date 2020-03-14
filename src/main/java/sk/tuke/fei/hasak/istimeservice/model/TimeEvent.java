@@ -5,7 +5,8 @@
 
 package sk.tuke.fei.hasak.istimeservice.model;
 
-import lombok.Data;
+import lombok.*;
+import org.apache.tomcat.jni.Local;
 import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
@@ -17,7 +18,10 @@ import java.time.LocalDateTime;
  * @author Šimon Hašák
  */
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 @Table(name = "is_time_tb")
 public class TimeEvent extends RepresentationModel<TimeEvent> {
 
@@ -26,6 +30,10 @@ public class TimeEvent extends RepresentationModel<TimeEvent> {
     private long id;
 
     @Column(name = "time", nullable = false)
-    private LocalDateTime eventTime;
+    private LocalDateTime time;
+
+    public TimeEvent(LocalDateTime time) {
+        this.time = time;
+    }
 
 }
