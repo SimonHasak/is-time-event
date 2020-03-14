@@ -5,6 +5,7 @@
 
 package sk.tuke.fei.hasak.istimeservice.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import sk.tuke.fei.hasak.istimeservice.model.TimeEvent;
 import sk.tuke.fei.hasak.istimeservice.repository.IsTimeRepository;
@@ -14,6 +15,7 @@ import sk.tuke.fei.hasak.istimeservice.repository.IsTimeRepository;
  *
  * @author Šimon Hašák
  */
+@Slf4j
 @Service
 public class IsTimeService {
 
@@ -34,4 +36,15 @@ public class IsTimeService {
      * @return the iterable
      */
     public Iterable<TimeEvent> findAll() { return timeRepository.findAll(); }
+
+    public TimeEvent save(TimeEvent event) {
+        TimeEvent savedEvent = timeRepository.save(event);
+        log.info("[Is-Time-Service] Time event with id {} was saved", savedEvent.getId());
+        return savedEvent;
+    }
+
+    public void deleteById(long id) {
+        log.info("[Is-Time-Service] Time event with id {} was deleted.", id);
+        timeRepository.deleteById(id);
+    }
 }
