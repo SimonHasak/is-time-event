@@ -5,10 +5,14 @@
 
 package sk.tuke.fei.hasak.istimeservice.service;
 
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import sk.tuke.fei.hasak.istimeservice.model.TimeEvent;
+import sk.tuke.fei.hasak.istimeservice.exception.SchedulledEventNotFoundException;
+import sk.tuke.fei.hasak.istimeservice.model.SchedulledEvent;
 import sk.tuke.fei.hasak.istimeservice.repository.IsTimeRepository;
+
+import java.util.Optional;
 
 /**
  * The type Is time service.
@@ -35,12 +39,47 @@ public class IsTimeService {
      *
      * @return the iterable
      */
-    public Iterable<TimeEvent> findAll() { return timeRepository.findAll(); }
+    public Iterable<SchedulledEvent> findAll() { return timeRepository.findAll(); }
 
-    public TimeEvent save(TimeEvent event) {
-        TimeEvent savedEvent = timeRepository.save(event);
-        log.info("[Is-Time-Service] Time event with id {} was saved", savedEvent.getId());
+    public SchedulledEvent findById(long id) throws SchedulledEventNotFoundException {
+        Optional<SchedulledEvent> eventOptional = timeRepository.findById(id);
+
+        if (eventOptional.isEmpty()) {
+            throw new SchedulledEventNotFoundException("Event with id: " + id + " was not found.");
+        }
+
+        return eventOptional.get();
+    }
+
+    public SchedulledEvent findByMessageId(long id) throws SchedulledEventNotFoundException {
+        Optional<SchedulledEvent> schedulledEventOptional = timeRepository.findByMessageId(id);
+
+        if (schedulledEventOptional.isEmpty()) {
+            throw new SchedulledEventNotFoundException("Event with messageId: " + id + " was not found.");
+        }
+
+        return schedulledEventOptional.get();
+    }
+
+    public SchedulledEvent save(@NonNull SchedulledEvent event) {
+        SchedulledEvent savedEvent = timeRepository.save(event);
+        log.info("[Is-Time-Service] Time event with id {} was saved", savedEvent.getSchedulledId());
         return savedEvent;
+    }
+
+    public SchedulledEvent update(@NonNull SchedulledEvent event, long id) throws SchedulledEventNotFoundException {
+        Optional<SchedulledEvent> eventOptional = timeRepository.findById(id);
+
+        if (eventOptional.isEmpty()) {
+            throw new SchedulledEventNotFoundException("Event with id: " + id + " was not found.");
+        }
+
+        log.info("Is-time-service] Event with id: {} updated", id);
+
+        event.setSchedulledId(id);
+        timeRepository.save(event);
+
+        return event;
     }
 
     public void deleteById(long id) {

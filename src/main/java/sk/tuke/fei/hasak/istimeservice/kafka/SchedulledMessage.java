@@ -9,8 +9,8 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReachedTimeMessage {
+public class SchedulledMessage {
 
-    private long id;
+    private long messageId;
 
 }
