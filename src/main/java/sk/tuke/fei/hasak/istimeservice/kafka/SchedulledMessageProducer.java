@@ -24,5 +24,4 @@ public class ReachedTimeProducer {
         log.info("[Is-Time-Service] send:{}", message.toString());
         kafkaTemplate.send(topic, message);
     }
-
 }
