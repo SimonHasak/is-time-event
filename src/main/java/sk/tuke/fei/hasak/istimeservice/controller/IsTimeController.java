@@ -39,10 +39,11 @@ public class IsTimeController {
         this.timeService = timeService;
     }
 
+
     /**
-     * Find all TimeEvents collection model.
+     * Find all schedulled events wrapped in collection model.
      *
-     * @return the collection model of TimeEvents
+     * @return the collection model
      */
     @GetMapping()
     public CollectionModel<EntityModel<SchedulledEvent>> findAll() {
@@ -53,6 +54,12 @@ public class IsTimeController {
         return new CollectionModel<>(events);
     }
 
+    /**
+     * Find by id schedulled event wrapped in entity model.
+     *
+     * @param id the id of schedduled event
+     * @return the scheddulled event wrapped in entity model
+     */
     @SneakyThrows
     @GetMapping("/{id}")
     public EntityModel<SchedulledEvent> findById(@PathVariable long id) {
@@ -65,6 +72,12 @@ public class IsTimeController {
         return new EntityModel<>(event);
     }
 
+    /**
+     * Find saved event by message id wrapped in entity model.
+     *
+     * @param id the message id
+     * @return the saved event wrapped in entity model
+     */
     @SneakyThrows
     @GetMapping("/message/{id}")
     public EntityModel<SchedulledEvent> findByMessageId(@PathVariable long id) {
@@ -77,6 +90,12 @@ public class IsTimeController {
         return new EntityModel<>(event);
     }
 
+    /**
+     * Save scchedulled event and wrapped it in entity model.
+     *
+     * @param event the event to be saved
+     * @return the saved event wrapped in entity model
+     */
     @PostMapping()
     public EntityModel<SchedulledEvent> save(@RequestBody SchedulledEvent event) {
         SchedulledEvent savedEvent = timeService.save(event);
@@ -87,11 +106,13 @@ public class IsTimeController {
         return new EntityModel<>(savedEvent);
     }
 
+
     /**
-     * Update event.
+     * Update schedulled event wrapped in entity model.
      *
-     * @param event the new event
-     * @param id    the id of old event to be updated by new one.
+     * @param event the schedulled event to update old event
+     * @param id    the id of schedulled event to be updated
+     * @return the updated schedulled event wrapped in entity model
      */
     @SneakyThrows
     @PutMapping("/{id}")
@@ -104,10 +125,11 @@ public class IsTimeController {
         return new EntityModel<>(updatedEvent);
     }
 
+
     /**
-     * Delete event by its id.
+     * Delete schedulled event.
      *
-     * @param id the id.
+     * @param id the id of schedulled event
      */
     @SneakyThrows
     @DeleteMapping("/{id}")

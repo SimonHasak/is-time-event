@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2020 Šimon Hašák.
+ * All rights reserved.
+ */
+
 package sk.tuke.fei.hasak.istimeservice.config;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -14,12 +19,25 @@ import sk.tuke.fei.hasak.istimeservice.kafka.SchedulledMessage;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The type Kafka producer config.
+ *
+ * @author Šimon Hašák
+ */
 @Configuration
 public class KafkaProducerConfig {
 
+    /**
+     * The addresses for kafka producer.
+     */
     @Value(value = "${kafka.bootstrapAddress}")
     private String bootstrapAddress;
 
+    /**
+     * Schedulled message producer factory.
+     *
+     * @return the producer factory
+     */
     @Bean
     public ProducerFactory<String, SchedulledMessage> schedulledMessageProducerFactory() {
         Map<String, Object> configProps = new HashMap<>();
@@ -29,6 +47,11 @@ public class KafkaProducerConfig {
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 
+    /**
+     * Saved event message kafka template.
+     *
+     * @return the kafka template
+     */
     @Bean
     public KafkaTemplate<String, SchedulledMessage> savedEventMessageKafkaTemplate() {
         return new KafkaTemplate<>(schedulledMessageProducerFactory());

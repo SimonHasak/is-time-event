@@ -25,6 +25,7 @@ public class IsTimeService {
 
     private final IsTimeRepository timeRepository;
 
+
     /**
      * Instantiates a new Is time service.
      *
@@ -34,6 +35,7 @@ public class IsTimeService {
         this.timeRepository = timeRepository;
     }
 
+
     /**
      * Find all iterable.
      *
@@ -41,6 +43,13 @@ public class IsTimeService {
      */
     public Iterable<SchedulledEvent> findAll() { return timeRepository.findAll(); }
 
+    /**
+     * Find by id schedulled event.
+     *
+     * @param id the id
+     * @return the schedulled event
+     * @throws SchedulledEventNotFoundException the schedulled event not found exception
+     */
     public SchedulledEvent findById(long id) throws SchedulledEventNotFoundException {
         Optional<SchedulledEvent> eventOptional = timeRepository.findById(id);
 
@@ -51,6 +60,13 @@ public class IsTimeService {
         return eventOptional.get();
     }
 
+    /**
+     * Find by message id schedulled event.
+     *
+     * @param id the id
+     * @return the schedulled event
+     * @throws SchedulledEventNotFoundException the schedulled event not found exception
+     */
     public SchedulledEvent findByMessageId(long id) throws SchedulledEventNotFoundException {
         Optional<SchedulledEvent> schedulledEventOptional = timeRepository.findByMessageId(id);
 
@@ -61,12 +77,26 @@ public class IsTimeService {
         return schedulledEventOptional.get();
     }
 
+    /**
+     * Save schedulled event.
+     *
+     * @param event the event
+     * @return the schedulled event
+     */
     public SchedulledEvent save(@NonNull SchedulledEvent event) {
         SchedulledEvent savedEvent = timeRepository.save(event);
         log.info("[Is-Time-Service] Time event with id {} was saved", savedEvent.getSchedulledId());
         return savedEvent;
     }
 
+    /**
+     * Update schedulled event.
+     *
+     * @param event the event
+     * @param id    the id
+     * @return the schedulled event
+     * @throws SchedulledEventNotFoundException the schedulled event not found exception
+     */
     public SchedulledEvent update(@NonNull SchedulledEvent event, long id) throws SchedulledEventNotFoundException {
         Optional<SchedulledEvent> eventOptional = timeRepository.findById(id);
 
@@ -82,8 +112,13 @@ public class IsTimeService {
         return event;
     }
 
+    /**
+     * Delete by id.
+     *
+     * @param id the id
+     */
     public void deleteById(long id) {
-        log.info("[Is-Time-Service] Time event with id {} was deleted.", id);
+        log.info("[Is-Time-Service] Schedulled event with id {} was deleted.", id);
         timeRepository.deleteById(id);
     }
 }

@@ -35,6 +35,12 @@ public class SchedulledEvent extends RepresentationModel<SchedulledEvent> {
     @Column(name = "time", nullable = false)
     private LocalDateTime schedulledTime;
 
+    /**
+     * Instantiates a new Schedulled event.
+     *
+     * @param messageId      the message id
+     * @param schedulledTime the schedulled time
+     */
     public SchedulledEvent(Long messageId, LocalDateTime schedulledTime) {
         this.messageId = messageId;
         this.schedulledTime = schedulledTime;

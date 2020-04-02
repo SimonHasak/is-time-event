@@ -19,5 +19,11 @@ import java.util.Optional;
 @Repository
 public interface IsTimeRepository extends CrudRepository<SchedulledEvent, Long> {
 
+    /**
+     * Find by saved event by message id wrapped in optional.
+     *
+     * @param id the id
+     * @return the optional
+     */
     Optional<SchedulledEvent> findByMessageId(Long id);
 }
