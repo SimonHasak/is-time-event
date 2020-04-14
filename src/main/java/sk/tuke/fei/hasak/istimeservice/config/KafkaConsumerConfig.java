@@ -15,7 +15,7 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
-import sk.tuke.fei.hasak.istimeservice.kafka.SavedEventMessage;
+import sk.tuke.fei.hasak.istimeservice.kafka.MessageDeleted;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +38,7 @@ public class KafkaConsumerConfig {
     /**
      * The group id name for savedEventMessageTopic .
      */
-    @Value(value = "${kafka.groupId.saved.event.message}")
+    @Value(value = "${kafka.groupId.message.deleted}")
     private String groupId;
 
     /**
@@ -47,13 +47,13 @@ public class KafkaConsumerConfig {
      * @return the consumer factory
      */
     @Bean
-    public ConsumerFactory<String, SavedEventMessage> savedEventMessageConsumerFactory() {
+    public ConsumerFactory<String, MessageDeleted> savedEventMessageConsumerFactory() {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
-        props.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
+//        props.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
         return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(),
-                new JsonDeserializer<>(SavedEventMessage.class, false));
+                new JsonDeserializer<>(MessageDeleted.class, false));
     }
 
     /**
@@ -62,8 +62,8 @@ public class KafkaConsumerConfig {
      * @return the concurrent kafka listener container factory
      */
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, SavedEventMessage> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, SavedEventMessage> factory =
+    public ConcurrentKafkaListenerContainerFactory<String, MessageDeleted> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, MessageDeleted> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(savedEventMessageConsumerFactory());
         return factory;

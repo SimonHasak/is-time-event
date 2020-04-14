@@ -23,14 +23,8 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class SavedEventMessage {
+public class MessageDeleted {
 
     private long messageId;
-
-    private String email;
-
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime messageTime;
-
 
 }

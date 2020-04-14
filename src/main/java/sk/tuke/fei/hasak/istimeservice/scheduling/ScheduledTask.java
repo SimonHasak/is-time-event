@@ -51,7 +51,7 @@ public class ScheduledTask {
                 this.isTimeService.deleteById(event.getSchedulledId());
             }
         });
-        log.info("Schedulled time print.");
+        log.info("Schedulled time check.");
     }
 
 }

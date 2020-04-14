@@ -6,10 +6,12 @@
 package sk.tuke.fei.hasak.istimeservice.kafka;
 
 import lombok.NonNull;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
+import sk.tuke.fei.hasak.istimeservice.exception.SchedulledEventNotFoundException;
 import sk.tuke.fei.hasak.istimeservice.model.SchedulledEvent;
 import sk.tuke.fei.hasak.istimeservice.service.IsTimeService;
 
@@ -20,7 +22,7 @@ import sk.tuke.fei.hasak.istimeservice.service.IsTimeService;
  */
 @Slf4j
 @Component
-public class SavedEventMessageKafkaListener {
+public class MessageDeletedKafkaListener {
 
     private final IsTimeService isTimeService;
 
@@ -30,20 +32,22 @@ public class SavedEventMessageKafkaListener {
      * @param isTimeService the is time service
      */
     @Autowired
-    public SavedEventMessageKafkaListener(IsTimeService isTimeService) {
+    public MessageDeletedKafkaListener(IsTimeService isTimeService) {
         this.isTimeService = isTimeService;
     }
 
     /**
-     * Process saved event message and save it into schedulled event.
+     * Process deleted message and save it into schedulled event.
      *
      * @param message the message
      */
-    @KafkaListener(topics = "${kafka.topic.saved.event.message}", groupId = "${kafka.groupId.saved.event.message}",
+    @SneakyThrows
+    @KafkaListener(topics = "${kafka.topic.message.deleted}", groupId = "${kafka.groupId.message.deleted}",
                     containerFactory = "kafkaListenerContainerFactory")
-    public void processSavedEventMessage(@NonNull SavedEventMessage message) {
+    public void processMessageDeleted(@NonNull MessageDeleted message) {
+        SchedulledEvent schedulledEvent = isTimeService.findByMessageId(message.getMessageId());
         log.info("[Is-Time-Service] received:{}", message);
-        isTimeService.save(new SchedulledEvent(message.getMessageId(), message.getMessageTime()));
+        isTimeService.deleteById(schedulledEvent.getSchedulledId());
     }
 
 }
