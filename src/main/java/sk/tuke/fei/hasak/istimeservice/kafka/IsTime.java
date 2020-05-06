@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * The type Schedulled message.
+ * The type Is Time message.
  *
  * @author Šimon Hašák
  */
@@ -19,7 +19,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class SchedulledMessage {
+public class IsTime {
 
     private long messageId;
 

@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
-import sk.tuke.fei.hasak.istimeservice.exception.SchedulledEventNotFoundException;
 import sk.tuke.fei.hasak.istimeservice.model.SchedulledEvent;
 import sk.tuke.fei.hasak.istimeservice.service.IsTimeService;
 

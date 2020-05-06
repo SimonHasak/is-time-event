@@ -13,13 +13,13 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 /**
- * The type Schedulled message producer.
+ * The type Is Time message producer.
  *
  * @author Šimon Hašák
  */
 @Slf4j
 @Component
-public class SchedulledMessageProducer {
+public class IsTimeProducer {
 
     /**
      * The topic for publishing messages.
@@ -30,7 +30,7 @@ public class SchedulledMessageProducer {
     /**
      * KafkaTemplate for publishing messages to selected topic.
      */
-    private KafkaTemplate<String, SchedulledMessage> kafkaTemplate;
+    private KafkaTemplate<String, IsTime> kafkaTemplate;
 
     /**
      * Instantiates a new Schedulled message producer.
@@ -38,7 +38,7 @@ public class SchedulledMessageProducer {
      * @param kafkaTemplate the kafka template
      */
     @Autowired
-    public SchedulledMessageProducer(KafkaTemplate<String, SchedulledMessage> kafkaTemplate) {
+    public IsTimeProducer(KafkaTemplate<String, IsTime> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
@@ -47,7 +47,7 @@ public class SchedulledMessageProducer {
      *
      * @param message the message
      */
-    public void sendReachTimeMessage(@NonNull SchedulledMessage message) {
+    public void sendReachTimeMessage(@NonNull IsTime message) {
         log.info("[Is-Time-Service] send: {} to topic: {}", message.toString(), topic);
         kafkaTemplate.send(topic, message);
     }

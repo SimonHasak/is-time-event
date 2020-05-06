@@ -9,8 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import sk.tuke.fei.hasak.istimeservice.kafka.SchedulledMessage;
-import sk.tuke.fei.hasak.istimeservice.kafka.SchedulledMessageProducer;
+import sk.tuke.fei.hasak.istimeservice.kafka.IsTime;
+import sk.tuke.fei.hasak.istimeservice.kafka.IsTimeProducer;
 import sk.tuke.fei.hasak.istimeservice.service.IsTimeService;
 
 import java.time.LocalDateTime;
@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 @Component
 public class ScheduledTask {
 
-    private final SchedulledMessageProducer producer;
+    private final IsTimeProducer producer;
 
     private final IsTimeService isTimeService;
 
@@ -35,7 +35,7 @@ public class ScheduledTask {
      * @param isTimeService the is time service
      */
     @Autowired
-    public ScheduledTask(SchedulledMessageProducer producer, IsTimeService isTimeService) {
+    public ScheduledTask(IsTimeProducer producer, IsTimeService isTimeService) {
         this.producer = producer;
         this.isTimeService = isTimeService;
     }
@@ -47,7 +47,7 @@ public class ScheduledTask {
     public void checkEventTime() {
         isTimeService.findAll().forEach(event -> {
             if (event.getSchedulledTime().isBefore(LocalDateTime.now())) {
-                this.producer.sendReachTimeMessage(new SchedulledMessage(event.getMessageId()));
+                this.producer.sendReachTimeMessage(new IsTime(event.getMessageId()));
                 this.isTimeService.deleteById(event.getSchedulledId());
             }
         });

@@ -14,7 +14,7 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
-import sk.tuke.fei.hasak.istimeservice.kafka.SchedulledMessage;
+import sk.tuke.fei.hasak.istimeservice.kafka.IsTime;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +39,7 @@ public class KafkaProducerConfig {
      * @return the producer factory
      */
     @Bean
-    public ProducerFactory<String, SchedulledMessage> schedulledMessageProducerFactory() {
+    public ProducerFactory<String, IsTime> schedulledMessageProducerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -53,7 +53,7 @@ public class KafkaProducerConfig {
      * @return the kafka template
      */
     @Bean
-    public KafkaTemplate<String, SchedulledMessage> savedEventMessageKafkaTemplate() {
+    public KafkaTemplate<String, IsTime> savedEventMessageKafkaTemplate() {
         return new KafkaTemplate<>(schedulledMessageProducerFactory());
     }
 
